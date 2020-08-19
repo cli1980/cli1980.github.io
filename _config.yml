@@ -1,7 +1,7 @@
 title: 利其器，善其事
 description: C.L's Technical Notes
 remote_theme: mmistakes/minimal-mistakes@4.20.1
-minimal_mistakes_skin: "dark"
+minimal_mistakes_skin: "neon"
 
 plugins:
   - jekyll-include-cache
