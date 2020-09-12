@@ -29,6 +29,9 @@ plugins               :
 
 permalink: /:categories/:title/
 
+include:
+  - _pages
+
 # Defaults
 defaults:
   # _posts
