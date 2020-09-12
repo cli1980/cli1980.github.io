@@ -1,7 +1,45 @@
-title: 利其器，善其事
-description: C.L's Technical Notes
-remote_theme: mmistakes/minimal-mistakes@4.20.1
-minimal_mistakes_skin: "neon"
+title                 : "利其器，善其事"
+description           : "C.L's Technical Notes"
+url                   : "https://cli1980.github.io/"
+remote_theme          : "mmistakes/minimal-mistakes@4.20.1"
+minimal_mistakes_skin : "neon"
 
-plugins:
+search                : true
+search_full_content   : true
+
+author: 
+  name                : "Chunlin Li"
+  avatar              : "http://chunlin.li/images/avatar.jpeg"
+  bio                 : "software developer, working on computer vision, autonomous machine and robotics."
+  location            : "Santa Clara, CA"
+  links:
+    - label : "Website"
+      icon  : "fas fa-fw fa-link"
+      url   : "http://chunlin.li"    
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/cli1980"
+    - label: "Linkedin"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/chunlin-li-b0784418/"
+
+
+plugins               :
   - jekyll-include-cache
+
+permalink: /:categories/:title/
+
+# Defaults
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: # true
+      share: # true
+      related: true
+      show_date: true

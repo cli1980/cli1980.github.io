@@ -1,6 +1,11 @@
 ---
 layout: single
 title: "Update Nvidia driver under Ubuntu"
+categories: Linux
+tags:
+  - NVIDIA
+  - driver
+  - Ubuntu
 published: true
 ---
 ## The most straight forward approach is to install cuda
