@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "Update Nvidia driver under Ubuntu"
-categories: Linux
+categories: Note
 tags:
   - NVIDIA
   - driver
