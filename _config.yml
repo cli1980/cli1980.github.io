@@ -32,6 +32,11 @@ permalink: /:categories/:title/
 include:
   - _pages
 
+comments:
+  provider               : "staticman_v2"
+  staticman:
+    branch               : "master"
+    endpoint             : https://staticman3.herokuapp.com/v3/entry/github/  
 # Defaults
 defaults:
   # _posts
@@ -42,7 +47,7 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: # true
+      comments: true
       share: # true
       related: true
       show_date: true
