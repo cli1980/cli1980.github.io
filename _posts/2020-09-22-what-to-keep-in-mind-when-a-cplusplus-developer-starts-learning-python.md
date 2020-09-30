@@ -90,6 +90,101 @@ Though not explicit, removing an existing property from an object is possible to
 ```python
 del complex.color
 ```
+## Object copy must be done explicitly
+In C++ or C, object copy happens all the time behind the scene, through the assignment operator('='), return value or arguments that have been passed to a function. However Python doesn't support object copy directly and either the assignment operator, return value or parameter passing only takes the reference of an object. This needs to be kept in mind especially when objects are passed to a function, as long as they're not the immutables such as integer, any change made on them inside the function is actually on original objects sitting outside the function. 
 
+Therefore the object ownership in python must be very clear in Python.
+```python
+def append(l, element):
+    l.append(element)
+    return l
 
+l1 = ['hello']
+l2 = append(l1, 'world')
+print(l1)
+print(l2)
+```
+The goal of above code is to get a new list by appending a string to the given list, and the output shows:
+```
+['hello', 'world']
+['hello', 'world']
+``` 
+Now we see, though we got the list we wanted, the original one has also been modified inside the _append_ function accidentally, and to fix the issue we have to create a new list object using the constructor of the built-in **list** class:
+```python
+def append(l, element):
+    l2 = list(l)
+    l2.append(element)
+    return l2
+
+l1 = ['hello']
+l2 = append(l1, 'world')
+print(l1)
+print(l2)
+```
+```
+['hello']
+['hello', 'world']
+```
+To make a copy of any object in Python, you have to rely on the built-in **copy** module, which supports both shallow copy and deep copy.
+
+The _copy.copy()_ does the shallow copy, which creates a new object and inserts references there to the objects found inside the original one. Thus the new copy looks very similar to the original one, both have the same property set inside, however the items(if they're also objects) from two independent objects point to the same thing.
+
+Let's modify the above code example a little bit by changing the elements in the list from immutable string to character list:
+```python
+def append(l, element):
+    r = list(l)
+    r.append(element)
+    return r
+
+l1 =[['h', 'e', 'l', 'l', 'o']]
+l2 = append(l1, ['w', 'o', 'r', 'l', 'd'])
+l1[0][0] = 'H'
+print(l1)
+print(l2)
+```
+```
+[['H', 'e', 'l', 'l', 'o']]
+[['H', 'e', 'l', 'l', 'o'], ['w', 'o', 'r', 'l', 'd']]
+```
+Here we're creating the new object inside _append_ function through built-in **list** class which does a shallow copy essentially, and the result is although we got a new list l2 from l1 after calling _append_ the items there are being shared by both. To fix the issue _copy.deepcopy()_ has to be used:
+```python
+import copy
+def append(l, element):
+    r = copy.deepcopy(l)
+    r.append(element)
+    return r
+
+l1 =[['h', 'e', 'l', 'l', 'o']]
+l2 = append(l1, ['w', 'o', 'r', 'l', 'd'])
+l1[0][0] = 'H'
+print(l1)
+print(l2)
+```
+```
+[['H', 'e', 'l', 'l', 'o']]
+[['h', 'e', 'l', 'l', 'o'], ['w', 'o', 'r', 'l', 'd']]
+```
+A deep copy constructs a new object and then recursively inserts copies of the objects (rather than reference) found inside the original one. The brute force approach may worries some C++ developers, and it is worrisome to some extent due to the potential recursive loop or other comprehensive scenarios. Fortunately this approach can be overridden for user defined classes through customized ```__deepcopy__``` functions.
+```python
+import copy
+
+class Bundle:
+    def __init__(self, name):
+        self.content = {"name": name}
+
+    def __deepcopy__(self, memo):
+        return Bundle("clone")
+
+b1 = Bundle("first")
+b2 = copy.deepcopy(b1)
+b1.content["name"] = "last"
+
+print(b1.content["name"])
+print(b2.content["name"])
+```
+The above code overrides the deepcopy behavior of Bundle class and the the object constructed from deepcopy gets "clone" as the name in its content:
+```
+last
+clone
+```
 [^1]: Advanced C++ uses std:function<R(args)> to wrap functions as objects, allowing developers to use functions as object to some extent.
