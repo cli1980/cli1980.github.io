@@ -23,6 +23,7 @@ author:
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/chunlin-li-b0784418/"
 
+repository: "cli1980/cli1980.github.io"
 
 plugins               :
   - jekyll-include-cache
