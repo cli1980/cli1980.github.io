@@ -33,10 +33,10 @@ include:
   - _pages
 
 comments:
-  provider               : "staticman_v2"
-  staticman:
-    branch               : "master"
-    endpoint             : https://staticman3.herokuapp.com/v3/entry/github/  
+  provider               : "utterances"
+  utterances:
+    theme                : "github-dark"
+    issue_term           : "pathname"
 # Defaults
 defaults:
   # _posts
