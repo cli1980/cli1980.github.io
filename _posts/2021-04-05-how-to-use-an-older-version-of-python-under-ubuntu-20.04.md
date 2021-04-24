@@ -28,9 +28,11 @@ Even though those packages are no longer maintained by the latest release we sti
 Let's take Python 3.6.9 as an example, following packages can be downloaded from https://packages.ubuntu.com/bionic-updates/python/ and installed in the dependency order:
 - [libpython3.6-minimal](https://packages.ubuntu.com/bionic-updates/libpython3.6-minimal)
 - [libpython3.6-stdlib](https://packages.ubuntu.com/bionic-updates/python/libpython3.6-stdlib)
+- [libpython3.6](https://packages.ubuntu.com/bionic-updates/libpython3.6)
 - [libpython3.6-dev](https://packages.ubuntu.com/bionic-updates/libpython3.6-dev)
 - [python3.6-minimal](https://packages.ubuntu.com/bionic-updates/python/python3.6-minimal)
 - [python3.6](https://packages.ubuntu.com/bionic-updates/python/python3.6)
+- [python3.6-dev](https://packages.ubuntu.com/bionic-updates/python/python3.6-dev)
 - [python-pip-whl](https://packages.ubuntu.com/bionic-updates/python/python-pip-whl)
 - [python-pip](https://packages.ubuntu.com/bionic-updates/python/python-pip)
 Installation command using dpkg is as follows:
