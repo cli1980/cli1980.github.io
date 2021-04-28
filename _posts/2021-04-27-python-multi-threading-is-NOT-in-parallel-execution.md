@@ -13,7 +13,7 @@ I did not realize that Python threading is not in parallel execution until my co
 Are there any solutions to overcome the problems caused by GIL? Possibly.
 - To use [the Python Multi-Processing Package](https://docs.python.org/3/library/multiprocessing.html) for your CPU bound programs and be prepared for the issues caused by [pickling](https://docs.python.org/3/library/pickle.html)
 - Try alternative Python implementations such as [PyPy](https://doc.pypy.org/en/latest/index.html), however keep in mind that not all your dependent packages will be supported there.
-- If you implement a python module through C++ binding and there happens to be some blocking operations, remember to give back the GIL at the start and acquire it again at the end. (This probably is not a solution but a fix after you find one of your call blocks the entire program, which is exactly what I got today)
+- If you implement a python module through C++ binding and there happens to be some blocking operations, remember to give back the GIL at the start and acquire it again at the end in the C++ implementation. (This probably is not a solution but a fix after you find one of your call blocks the entire program, which is exactly what I got today)
 
 Is GIL so bad? Maybe not, they claimed you'll get a performance boost with it for your single thread only program.
 
